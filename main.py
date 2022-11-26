@@ -60,7 +60,7 @@ def print_tela():
     saveBitMap = win32ui.CreateBitmap()
     saveBitMap.CreateCompatibleBitmap(mfcDC, w, h)
     saveDC.SelectObject(saveBitMap)
-    result = windll.user32.PrintWindow(hwnd, saveDC.GetSafeHdc(), 0)
+    result = saveDC.BitBlt((0, 0), (150, 150), mfcDC, (613, 314), win32con.SRCCOPY)
     bmpinfo = saveBitMap.GetInfo()
     bmpstr = saveBitMap.GetBitmapBits(True)
     im = Image.frombuffer(
@@ -71,7 +71,7 @@ def print_tela():
     saveDC.DeleteDC()
     mfcDC.DeleteDC()
     win32gui.ReleaseDC(hwnd, hwndDC)
-    if result == 1:
+    if result == None:
         im.save("test.png")
 print_tela()
 while True:
