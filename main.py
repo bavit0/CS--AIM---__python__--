@@ -60,7 +60,7 @@ def print_tela():
     saveBitMap = win32ui.CreateBitmap()
     saveBitMap.CreateCompatibleBitmap(mfcDC, w, h)
     saveDC.SelectObject(saveBitMap)
-    result = saveDC.BitBlt((0, 0), (150, 150), mfcDC, (634, 334), win32con.SRCCOPY)
+    result = saveDC.BitBlt((0, 0), (150, 150), mfcDC, (633, 334), win32con.SRCCOPY)
     bmpinfo = saveBitMap.GetInfo()
     bmpstr = saveBitMap.GetBitmapBits(True)
     im = Image.frombuffer(
@@ -75,7 +75,7 @@ def print_tela():
         im.save("test.png")
 print_tela()
 while True:
-    jpg_files = Path('C:/Users/kalil/PycharmProjects/pythonProject').glob('*.png')
+    jpg_files = Path('C:/Users/kalil/PycharmProjects/pythonProject1').glob('*.png')
     for x in jpg_files:
         update_tela(x)
 
