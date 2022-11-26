@@ -52,15 +52,15 @@ def update_tela(png):
 def print_tela():
     hwnd = win32gui.FindWindow(None, 'Counter-Strike: Global Offensive - Direct3D 9')
     left, top, right, bot = win32gui.GetWindowRect(hwnd)
-    w = 150
-    h = 150
+    w = 100
+    h = 100
     hwndDC = win32gui.GetWindowDC(hwnd)
     mfcDC = win32ui.CreateDCFromHandle(hwndDC)
     saveDC = mfcDC.CreateCompatibleDC()
     saveBitMap = win32ui.CreateBitmap()
     saveBitMap.CreateCompatibleBitmap(mfcDC, w, h)
     saveDC.SelectObject(saveBitMap)
-    result = saveDC.BitBlt((0, 0), (150, 150), mfcDC, (613, 314), win32con.SRCCOPY)
+    result = saveDC.BitBlt((0, 0), (150, 150), mfcDC, (634, 334), win32con.SRCCOPY)
     bmpinfo = saveBitMap.GetInfo()
     bmpstr = saveBitMap.GetBitmapBits(True)
     im = Image.frombuffer(
@@ -75,7 +75,7 @@ def print_tela():
         im.save("test.png")
 print_tela()
 while True:
-    jpg_files = Path('C:/Users/kalil/PycharmProjects/pythonProject1').glob('*.png')
+    jpg_files = Path('C:/Users/kalil/PycharmProjects/pythonProject').glob('*.png')
     for x in jpg_files:
         update_tela(x)
 
