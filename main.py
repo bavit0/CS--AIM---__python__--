@@ -24,21 +24,26 @@ def setClickthrough(hwnd):
     except Exception as e:
         print(e)
 
-tela = tk.Tk()
-tela.overrideredirect(True)
-tela_largura = tela.winfo_screenwidth()
-tela_altura = tela.winfo_screenheight()
-x_1 = (tela_largura / 2) - (60 / 2)
-y_1 = (tela_altura / 2) - (100 / 2)
-tela.geometry('%dx%d+%d+%d' % (60, 100, x_1, y_1))
-tela.attributes('-transparentcolor', 'white', '-topmost', 1)
-tela.config(bg='white')
-tela.wm_attributes("-topmost", 1)
-bg = Canvas(tela, width=x_1, height=y_1, bg='white')
-setClickthrough(bg.winfo_id())
-bg.pack()
-tela.update()
-
+def telao(off = 0):
+    global tela
+    global bg
+    if off == 1:
+        tela.destroy()
+    else:
+        tela = tk.Tk()
+        tela.overrideredirect(True)
+        tela_largura = tela.winfo_screenwidth()
+        tela_altura = tela.winfo_screenheight()
+        x_1 = (tela_largura / 2) - (240 / 2)
+        y_1 = (tela_altura / 2) - (260 / 2)
+        tela.geometry('%dx%d+%d+%d' % (240, 260, x_1, y_1))
+        tela.attributes('-transparentcolor', 'white', '-topmost', 1)
+        tela.config(bg='white')
+        tela.wm_attributes("-topmost", 1)
+        bg = Canvas(tela, width=x_1, height=y_1, bg='white')
+        setClickthrough(bg.winfo_id())
+        bg.pack()
+        tela.update()
 
 def update_tela(png):
     print_tela()
@@ -72,13 +77,21 @@ def print_tela():
     mfcDC.DeleteDC()
     win32gui.ReleaseDC(hwnd, hwndDC)
     if result == None:
-        im = im.resize((180, 180), Image.ANTIALIAS)
+        im = im.resize((240, 200), Image.ANTIALIAS)
         im.save("test.png")
-print_tela()
+
+
 while True:
-    jpg_files = Path('C:/Users/kalil/PycharmProjects/pythonProject1').glob('*.png')
-    for x in jpg_files:
-        update_tela(x)
+    if keyboard.is_pressed('v'):
+        telao(0)
+        while True:
+            if keyboard.is_pressed('c'):
+                telao(1)
+                break
+            else:
+                jpg_files = Path('C:/Users/kalil/PycharmProjects/pythonProject1').glob('*.png')
+                for x in jpg_files:
+                    update_tela(x)
 
 
 
