@@ -53,7 +53,7 @@ def update_tela(png):
     tela.update()
     image.destroy()
 
-
+# hwnd = (None, NOME DA ABA)
 def print_tela():
     hwnd = win32gui.FindWindow(None, 'Counter-Strike: Global Offensive - Direct3D 9')
     left, top, right, bot = win32gui.GetWindowRect(hwnd)
@@ -64,7 +64,7 @@ def print_tela():
     saveDC = mfcDC.CreateCompatibleDC()
     saveBitMap = win32ui.CreateBitmap()
     saveBitMap.CreateCompatibleBitmap(mfcDC, w, h)
-    saveDC.SelectObject(saveBitMap)
+    saveDC.SelectObject(saveBitMap) #(150,150) = tmnho (633, 334) = meio da tela
     result = saveDC.BitBlt((0, 0), (150, 150), mfcDC, (633, 334), win32con.SRCCOPY)
     bmpinfo = saveBitMap.GetInfo()
     bmpstr = saveBitMap.GetBitmapBits(True)
